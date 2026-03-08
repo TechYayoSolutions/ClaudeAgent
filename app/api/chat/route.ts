@@ -95,48 +95,24 @@ export async function POST(request: Request) {
     );
   }
 
-  const client = new Anthropic({ apiKey });
+  try {
+    const client = new Anthropic({ apiKey });
 
-  const stream = await client.messages.stream({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 512,
-    system: systemPrompt,
-    messages,
-  });
+    const response = await client.messages.create({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 512,
+      system: systemPrompt,
+      messages,
+    });
 
-  const encoder = new TextEncoder();
-  const readable = new ReadableStream({
-    async start(controller) {
-      try {
-        for await (const event of stream) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            const data = JSON.stringify({ text: event.delta.text });
-            controller.enqueue(encoder.encode(`data: ${data}\n\n`));
-          }
-        }
-        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-        controller.close();
-      } catch (err) {
-        const message =
-          err instanceof Error ? err.message : "Error desconocido";
-        controller.enqueue(
-          encoder.encode(
-            `data: ${JSON.stringify({ error: message })}\n\n`
-          )
-        );
-        controller.close();
-      }
-    },
-  });
+    const text = response.content
+      .filter((block) => block.type === "text")
+      .map((block) => block.text)
+      .join("");
 
-  return new Response(readable, {
-    headers: {
-      "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
-    },
-  });
+    return Response.json({ text });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Error desconocido";
+    return Response.json({ error: message }, { status: 500 });
+  }
 }

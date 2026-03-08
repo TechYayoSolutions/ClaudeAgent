@@ -61,47 +61,23 @@ export default function ChatBot() {
         body: JSON.stringify({ messages: apiMessages }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Error del servidor");
+        throw new Error(data.error || "Error del servidor");
       }
 
-      const reader = res.body?.getReader();
-      const decoder = new TextDecoder();
-
-      if (!reader) throw new Error("No se pudo leer la respuesta");
-
-      let accumulated = "";
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split("\n");
-
-        for (const line of lines) {
-          if (!line.startsWith("data: ")) continue;
-          const data = line.slice(6);
-          if (data === "[DONE]") break;
-
-          try {
-            const parsed = JSON.parse(data);
-            if (parsed.error) throw new Error(parsed.error);
-            if (parsed.text) {
-              accumulated += parsed.text;
-              setMessages((prev) =>
-                prev.map((m) =>
-                  m.id === assistantMsg.id
-                    ? { ...m, content: accumulated }
-                    : m
-                )
-              );
-            }
-          } catch {
-            // skip malformed chunks
-          }
-        }
+      if (data.error) {
+        throw new Error(data.error);
       }
+
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantMsg.id
+            ? { ...m, content: data.text }
+            : m
+        )
+      );
     } catch (err) {
       const errorText =
         err instanceof Error ? err.message : "Error de conexión";
