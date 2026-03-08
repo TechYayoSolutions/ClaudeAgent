@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/TU_FORM_ID";
 
 interface FormData {
   nombre: string;
@@ -24,6 +26,8 @@ export default function Contacto() {
   });
   const [errores, setErrores] = useState<FormErrors>({});
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState("");
 
   function validar(): boolean {
     const nuevosErrores: FormErrors = {};
@@ -42,12 +46,34 @@ export default function Contacto() {
     return Object.keys(nuevosErrores).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (validar()) {
-      // Placeholder: integrar con Formspree, API route, etc.
-      setEnviado(true);
-      setFormData({ nombre: "", email: "", mensaje: "" });
+    if (!validar()) return;
+
+    setEnviando(true);
+    setErrorEnvio("");
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: formData.nombre,
+          email: formData.email,
+          message: formData.mensaje,
+        }),
+      });
+
+      if (res.ok) {
+        setEnviado(true);
+        setFormData({ nombre: "", email: "", mensaje: "" });
+      } else {
+        setErrorEnvio("Hubo un error al enviar. Intenta de nuevo.");
+      }
+    } catch {
+      setErrorEnvio("Error de conexión. Verifica tu internet e intenta de nuevo.");
+    } finally {
+      setEnviando(false);
     }
   }
 
@@ -145,12 +171,25 @@ export default function Contacto() {
               <p className="text-red-500 text-sm mt-1">{errores.mensaje}</p>
             )}
           </div>
+          {errorEnvio && (
+            <p className="text-red-500 text-sm text-center">{errorEnvio}</p>
+          )}
           <button
             type="submit"
-            className="w-full bg-accent text-black font-semibold py-3 rounded-lg hover:bg-accent-hover transition-colors flex items-center justify-center gap-2"
+            disabled={enviando}
+            className="w-full bg-accent text-black font-semibold py-3 rounded-lg hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Enviar mensaje
-            <Send className="w-4 h-4" />
+            {enviando ? (
+              <>
+                Enviando...
+                <Loader2 className="w-4 h-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                Enviar mensaje
+                <Send className="w-4 h-4" />
+              </>
+            )}
           </button>
         </form>
       )}
