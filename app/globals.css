@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0A0A0F;
+  --foreground: #F0F0F5;
+  --bg-secondary: #12121A;
+  --bg-tertiary: #1A1A2E;
+  --text-secondary: #A0A0B8;
+  --accent: #00D4FF;
+  --accent-hover: #00B8E6;
+  --accent-alt: #7B2FFF;
+  --border: #2A2A3E;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-alt: var(--accent-alt);
+  --color-border: var(--border);
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
