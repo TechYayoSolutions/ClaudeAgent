@@ -4,8 +4,8 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Decorative blurs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-alt/20 rounded-full blur-3xl" />
+      <div aria-hidden="true" className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+      <div aria-hidden="true" className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-alt/20 rounded-full blur-3xl" />
 
       <div className="relative max-w-4xl mx-auto px-4 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
