@@ -98,7 +98,7 @@ export default function Contacto() {
       />
 
       {enviado ? (
-        <div className="bg-bg-secondary border border-accent/30 rounded-xl p-8 text-center">
+        <div role="alert" className="bg-bg-secondary border border-accent/30 rounded-xl p-8 text-center">
           <p className="text-xl font-semibold mb-2">
             ¡Mensaje enviado!
           </p>
@@ -124,13 +124,16 @@ export default function Contacto() {
               type="text"
               value={formData.nombre}
               onChange={handleChange}
+              aria-required="true"
+              aria-invalid={!!errores.nombre}
+              aria-describedby={errores.nombre ? "nombre-error" : undefined}
               className={`w-full bg-bg-secondary border rounded-lg px-4 py-3 text-foreground placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors ${
                 errores.nombre ? "border-red-500" : "border-border"
               }`}
               placeholder="Tu nombre"
             />
             {errores.nombre && (
-              <p className="text-red-500 text-sm mt-1">{errores.nombre}</p>
+              <p id="nombre-error" aria-live="polite" className="text-red-500 text-sm mt-1">{errores.nombre}</p>
             )}
           </div>
           <div>
@@ -143,13 +146,16 @@ export default function Contacto() {
               type="email"
               value={formData.email}
               onChange={handleChange}
+              aria-required="true"
+              aria-invalid={!!errores.email}
+              aria-describedby={errores.email ? "email-error" : undefined}
               className={`w-full bg-bg-secondary border rounded-lg px-4 py-3 text-foreground placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors ${
                 errores.email ? "border-red-500" : "border-border"
               }`}
               placeholder="tu@email.com"
             />
             {errores.email && (
-              <p className="text-red-500 text-sm mt-1">{errores.email}</p>
+              <p id="email-error" aria-live="polite" className="text-red-500 text-sm mt-1">{errores.email}</p>
             )}
           </div>
           <div>
@@ -162,17 +168,20 @@ export default function Contacto() {
               rows={5}
               value={formData.mensaje}
               onChange={handleChange}
+              aria-required="true"
+              aria-invalid={!!errores.mensaje}
+              aria-describedby={errores.mensaje ? "mensaje-error" : undefined}
               className={`w-full bg-bg-secondary border rounded-lg px-4 py-3 text-foreground placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors resize-none ${
                 errores.mensaje ? "border-red-500" : "border-border"
               }`}
               placeholder="Cuéntanos sobre tu proyecto..."
             />
             {errores.mensaje && (
-              <p className="text-red-500 text-sm mt-1">{errores.mensaje}</p>
+              <p id="mensaje-error" aria-live="polite" className="text-red-500 text-sm mt-1">{errores.mensaje}</p>
             )}
           </div>
           {errorEnvio && (
-            <p className="text-red-500 text-sm text-center">{errorEnvio}</p>
+            <p role="alert" className="text-red-500 text-sm text-center">{errorEnvio}</p>
           )}
           <button
             type="submit"

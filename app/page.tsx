@@ -7,12 +7,14 @@ import Precios from "./components/Precios";
 import FAQ from "./components/FAQ";
 import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
+import BackToTop from "./components/BackToTop";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <Servicios />
         <SobreNosotros />
@@ -22,6 +24,8 @@ export default function Home() {
         <Contacto />
       </main>
       <Footer />
+      <BackToTop />
+      <WhatsAppButton />
     </>
   );
 }

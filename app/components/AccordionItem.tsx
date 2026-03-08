@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { ChevronDown } from "lucide-react";
 
 interface AccordionItemProps {
@@ -15,10 +16,17 @@ export default function AccordionItem({
   abierto,
   onToggle,
 }: AccordionItemProps) {
+  const id = useId();
+  const buttonId = `accordion-btn-${id}`;
+  const panelId = `accordion-panel-${id}`;
+
   return (
     <div className="border border-border rounded-xl overflow-hidden">
       <button
+        id={buttonId}
         onClick={onToggle}
+        aria-expanded={abierto}
+        aria-controls={panelId}
         className="w-full flex items-center justify-between p-5 text-left hover:bg-bg-tertiary transition-colors"
       >
         <span className="font-semibold pr-4">{pregunta}</span>
@@ -29,6 +37,9 @@ export default function AccordionItem({
         />
       </button>
       <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
         className={`overflow-hidden transition-all duration-300 ${
           abierto ? "max-h-96" : "max-h-0"
         }`}

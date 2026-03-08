@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://techyayosolutions.github.io/ClaudeAgent/sitemap.xml

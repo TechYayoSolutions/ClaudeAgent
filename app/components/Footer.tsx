@@ -10,10 +10,10 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icono: Github, href: "#", label: "GitHub" },
-  { icono: Linkedin, href: "#", label: "LinkedIn" },
-  { icono: Twitter, href: "#", label: "Twitter" },
-  { icono: Instagram, href: "#", label: "Instagram" },
+  { icono: Github, href: "https://github.com/TechYayoSolutions", label: "GitHub" },
+  { icono: Linkedin, href: "https://linkedin.com/company/techyayo-solutions", label: "LinkedIn" },
+  { icono: Twitter, href: "https://twitter.com/TechYayoSolutions", label: "Twitter" },
+  { icono: Instagram, href: "https://instagram.com/techyayosolutions", label: "Instagram" },
 ];
 
 export default function Footer() {
@@ -57,6 +57,8 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="text-text-secondary hover:text-accent transition-colors"
                 >
