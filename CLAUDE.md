@@ -4,80 +4,124 @@ Este archivo proporciona orientación para asistentes de IA que trabajen con el 
 
 ## Descripción del Proyecto
 
-ClaudeAgent es un proyecto en sus etapas iniciales de desarrollo. Actualmente se está configurando la estructura base y la documentación del repositorio.
+**TechYayo Solutions** — Landing page profesional para una agencia de tecnología. Construida con Next.js (App Router), TypeScript y Tailwind CSS v4 con tema oscuro profesional. Todo el contenido está en español.
 
 ## Estructura del Repositorio
 
 ```
 ClaudeAgent/
-├── README.md          # Documentación general del proyecto
-├── CLAUDE.md          # Guía para asistentes de IA (este archivo)
-└── .git/              # Control de versiones con Git
+├── app/
+│   ├── layout.tsx                 # Layout raíz: lang="es", metadata SEO
+│   ├── page.tsx                   # Página principal, compone todas las secciones
+│   ├── globals.css                # Tailwind v4 + tema oscuro (variables CSS)
+│   └── components/
+│       ├── Header.tsx             # Navbar fija con menú hamburguesa móvil (client)
+│       ├── Hero.tsx               # Banner principal con CTA
+│       ├── Servicios.tsx          # Grid de servicios
+│       ├── SobreNosotros.tsx      # Sobre la empresa + estadísticas
+│       ├── Testimonios.tsx        # Tarjetas de testimonios
+│       ├── Precios.tsx            # Planes de precios (3 tiers)
+│       ├── FAQ.tsx                # Preguntas frecuentes con acordeón (client)
+│       ├── Contacto.tsx           # Formulario de contacto con validación (client)
+│       ├── Footer.tsx             # Pie de página
+│       ├── SectionHeading.tsx     # Encabezado reutilizable de sección
+│       ├── ServiceCard.tsx        # Tarjeta de servicio con icono
+│       ├── PricingCard.tsx        # Tarjeta de plan de precios
+│       ├── TestimonialCard.tsx    # Tarjeta de testimonio
+│       └── AccordionItem.tsx      # Item de acordeón (client)
+├── data/
+│   ├── servicios.ts               # Contenido de servicios
+│   ├── testimonios.ts             # Contenido de testimonios
+│   ├── precios.ts                 # Contenido de planes
+│   └── faq.ts                     # Preguntas y respuestas
+├── public/                        # Archivos estáticos
+├── package.json
+├── next.config.ts
+├── postcss.config.mjs
+├── tsconfig.json
+├── CLAUDE.md                      # Este archivo
+└── README.md
 ```
 
 ## Configuración del Entorno de Desarrollo
 
-Aún no se ha configurado ningún sistema de compilación, gestor de paquetes ni dependencias. A medida que el proyecto evolucione, actualizar esta sección con:
+- **Runtime**: Node.js (v18+)
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **Lenguaje**: TypeScript
+- **Estilos**: Tailwind CSS v4 (configuración en `globals.css` con `@theme inline`)
+- **Iconos**: lucide-react
 
-- Requisitos de lenguaje/entorno de ejecución
-- Cómo instalar dependencias
-- Cómo compilar el proyecto
-- Variables de entorno o configuración necesaria
+### Instalación
+
+```bash
+npm install
+```
 
 ## Comandos Comunes
 
-_Aún no hay comandos configurados. Actualizar esta sección conforme se agreguen herramientas._
-
-<!-- Estructura de ejemplo para uso futuro:
 ```bash
-# Instalar dependencias
-<gestor-de-paquetes> install
-
-# Ejecutar el proyecto
-<gestor-de-paquetes> start
-
-# Ejecutar pruebas
-<gestor-de-paquetes> test
-
-# Linter / formateo
-<gestor-de-paquetes> lint
-<gestor-de-paquetes> format
+npm run dev        # Servidor de desarrollo en http://localhost:3000
+npm run build      # Build de producción
+npm start          # Servir build de producción
+npm run lint       # Ejecutar ESLint
 ```
--->
 
-## Pruebas
+## Arquitectura y Convenciones
 
-Aún no se ha configurado un framework de pruebas. Cuando se agreguen pruebas, documentar:
+### Componentes
 
-- Framework y ejecutor de pruebas
-- Cómo ejecutar la suite completa de pruebas
-- Cómo ejecutar un archivo o caso de prueba individual
-- Convenciones de pruebas (nomenclatura, ubicación de archivos, patrones de mocking)
+- **Server Components** por defecto (la mayoría de secciones)
+- **`"use client"`** solo cuando hay interactividad: Header (menú móvil), FAQ (acordeón), Contacto (formulario), AccordionItem
+- Los datos estáticos viven en `data/` separados de los componentes
+- Los componentes reutilizables (cards, headings) reciben props tipadas con interfaces TypeScript
+
+### Tema oscuro
+
+La paleta de colores está definida como variables CSS en `globals.css` y expuesta a Tailwind via `@theme inline`:
+
+| Clase Tailwind | Color | Uso |
+|---|---|---|
+| `bg-background` | `#0A0A0F` | Fondo principal |
+| `bg-bg-secondary` | `#12121A` | Tarjetas y superficies |
+| `bg-bg-tertiary` | `#1A1A2E` | Hover states |
+| `text-foreground` | `#F0F0F5` | Texto principal |
+| `text-text-secondary` | `#A0A0B8` | Texto secundario |
+| `text-accent` / `bg-accent` | `#00D4FF` | Acento cyan |
+| `bg-accent-alt` | `#7B2FFF` | Acento violeta (gradientes) |
+| `border-border` | `#2A2A3E` | Bordes |
+
+### Navegación
+
+- Smooth scroll nativo via `html { scroll-behavior: smooth; }`
+- Cada sección usa `scroll-mt-20` para compensar la navbar fija
+- Links de navegación son anchors: `#servicios`, `#nosotros`, `#testimonios`, `#precios`, `#faq`, `#contacto`
+
+### Formulario de contacto
+
+- Validación client-side (nombre, email, mensaje requeridos)
+- No tiene backend configurado — placeholder listo para integrar Formspree, API route, etc.
 
 ## Estilo de Código y Convenciones
 
-### Lineamientos Generales
-
-- Escribir código claro y legible con nombres descriptivos
-- Mantener las funciones pequeñas y enfocadas en una sola responsabilidad
-- Preferir el comportamiento explícito sobre el implícito
-- Evitar la sobreingeniería; resolver el problema actual sin abstracciones innecesarias
+- Código y nombres de variables/funciones en inglés para keywords, pero contenido visible en español
+- Props de componentes tipadas con interfaces TypeScript
+- Nombres de componentes y archivos en PascalCase
+- Datos estáticos exportados como arrays tipados desde `data/`
 
 ### Convenciones de Git
 
 - **Rama principal**: `main`
-- Escribir mensajes de commit concisos y descriptivos
-- Usar tiempo presente en los mensajes de commit (ej: "Agregar función" en vez de "Se agregó función")
-- Mantener los commits enfocados en un solo cambio lógico
+- Mensajes de commit concisos y descriptivos
+- Tiempo presente en mensajes de commit
+
+## Pruebas
+
+Aún no se ha configurado un framework de pruebas.
 
 ## CI/CD
 
-Aún no se han configurado pipelines de CI/CD. Actualizar esta sección cuando se agreguen flujos de trabajo.
-
-## Decisiones Arquitectónicas Clave
-
-_Ninguna registrada aún. Documentar aquí las decisiones arquitectónicas significativas conforme el proyecto se desarrolle._
+Aún no se han configurado pipelines de CI/CD.
 
 ## Solución de Problemas
 
-_No hay problemas conocidos aún. Agregar problemas comunes y sus soluciones conforme surjan._
+- **Error de Google Fonts en build**: El entorno no tiene acceso externo a Google Fonts. Se usa fuente del sistema como fallback. Si necesitas Geist, descárgala localmente y usa `next/font/local`.
