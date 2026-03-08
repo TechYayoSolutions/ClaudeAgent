@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/TU_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvzwgjrd";
 
 interface FormData {
   nombre: string;
