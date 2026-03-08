@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://techyayosolutions.github.io/ClaudeAgent"),
+  metadataBase: new URL("https://techyayo.vercel.app"),
   title: "TechYayo Solutions | Agencia de Tecnología",
   description:
     "Soluciones tecnológicas a medida: desarrollo de software, consultoría, e-commerce, SaaS y más.",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "TechYayo Solutions | Agencia de Tecnología",
     description:
       "Soluciones tecnológicas a medida: desarrollo de software, consultoría, e-commerce, SaaS y más.",
-    url: "https://techyayosolutions.github.io/ClaudeAgent",
+    url: "https://techyayo.vercel.app",
     siteName: "TechYayo Solutions",
     locale: "es_ES",
     type: "website",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "TechYayo Solutions",
-  url: "https://techyayosolutions.github.io/ClaudeAgent",
+  url: "https://techyayo.vercel.app",
   description:
     "Soluciones tecnológicas a medida: desarrollo de software, consultoría, e-commerce, SaaS y más.",
   sameAs: [

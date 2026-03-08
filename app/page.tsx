@@ -9,6 +9,7 @@ import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import BackToTop from "./components/BackToTop";
+import ChatBot from "./components/ChatBot";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Contacto />
       </main>
       <Footer />
+      <ChatBot />
       <BackToTop />
       <WhatsAppButton />
     </>
