@@ -1,83 +1,83 @@
 # CLAUDE.md
 
-This file provides guidance for AI assistants working with the ClaudeAgent repository.
+Este archivo proporciona orientación para asistentes de IA que trabajen con el repositorio ClaudeAgent.
 
-## Project Overview
+## Descripción del Proyecto
 
-ClaudeAgent is a project in its early stages of development. The repository is currently being set up with foundational structure and documentation.
+ClaudeAgent es un proyecto en sus etapas iniciales de desarrollo. Actualmente se está configurando la estructura base y la documentación del repositorio.
 
-## Repository Structure
+## Estructura del Repositorio
 
 ```
 ClaudeAgent/
-├── README.md          # Project overview and user-facing documentation
-├── CLAUDE.md          # AI assistant guidance (this file)
-└── .git/              # Git version control
+├── README.md          # Documentación general del proyecto
+├── CLAUDE.md          # Guía para asistentes de IA (este archivo)
+└── .git/              # Control de versiones con Git
 ```
 
-## Development Setup
+## Configuración del Entorno de Desarrollo
 
-No build system, package manager, or dependencies have been configured yet. As the project evolves, update this section with:
+Aún no se ha configurado ningún sistema de compilación, gestor de paquetes ni dependencias. A medida que el proyecto evolucione, actualizar esta sección con:
 
-- Language/runtime requirements
-- How to install dependencies
-- How to build the project
-- Environment variables or configuration needed
+- Requisitos de lenguaje/entorno de ejecución
+- Cómo instalar dependencias
+- Cómo compilar el proyecto
+- Variables de entorno o configuración necesaria
 
-## Common Commands
+## Comandos Comunes
 
-_No commands configured yet. Update this section as tooling is added._
+_Aún no hay comandos configurados. Actualizar esta sección conforme se agreguen herramientas._
 
-<!-- Example structure for future use:
+<!-- Estructura de ejemplo para uso futuro:
 ```bash
-# Install dependencies
-<package-manager> install
+# Instalar dependencias
+<gestor-de-paquetes> install
 
-# Run the project
-<package-manager> start
+# Ejecutar el proyecto
+<gestor-de-paquetes> start
 
-# Run tests
-<package-manager> test
+# Ejecutar pruebas
+<gestor-de-paquetes> test
 
-# Lint / format
-<package-manager> lint
-<package-manager> format
+# Linter / formateo
+<gestor-de-paquetes> lint
+<gestor-de-paquetes> format
 ```
 -->
 
-## Testing
+## Pruebas
 
-No test framework is configured yet. When tests are added, document:
+Aún no se ha configurado un framework de pruebas. Cuando se agreguen pruebas, documentar:
 
-- Test framework and runner
-- How to run the full test suite
-- How to run a single test file or test case
-- Any test conventions (naming, file location, mocking patterns)
+- Framework y ejecutor de pruebas
+- Cómo ejecutar la suite completa de pruebas
+- Cómo ejecutar un archivo o caso de prueba individual
+- Convenciones de pruebas (nomenclatura, ubicación de archivos, patrones de mocking)
 
-## Code Style and Conventions
+## Estilo de Código y Convenciones
 
-### General Guidelines
+### Lineamientos Generales
 
-- Write clear, readable code with descriptive names
-- Keep functions small and focused on a single responsibility
-- Prefer explicit over implicit behavior
-- Avoid over-engineering; solve the problem at hand without unnecessary abstraction
+- Escribir código claro y legible con nombres descriptivos
+- Mantener las funciones pequeñas y enfocadas en una sola responsabilidad
+- Preferir el comportamiento explícito sobre el implícito
+- Evitar la sobreingeniería; resolver el problema actual sin abstracciones innecesarias
 
-### Git Conventions
+### Convenciones de Git
 
-- **Default branch**: `main`
-- Write concise, descriptive commit messages
-- Use present tense in commit messages (e.g., "Add feature" not "Added feature")
-- Keep commits focused on a single logical change
+- **Rama principal**: `main`
+- Escribir mensajes de commit concisos y descriptivos
+- Usar tiempo presente en los mensajes de commit (ej: "Agregar función" en vez de "Se agregó función")
+- Mantener los commits enfocados en un solo cambio lógico
 
 ## CI/CD
 
-No CI/CD pipelines are configured yet. Update this section when workflows are added.
+Aún no se han configurado pipelines de CI/CD. Actualizar esta sección cuando se agreguen flujos de trabajo.
 
-## Key Architecture Decisions
+## Decisiones Arquitectónicas Clave
 
-_None recorded yet. Document significant architectural choices here as the project develops._
+_Ninguna registrada aún. Documentar aquí las decisiones arquitectónicas significativas conforme el proyecto se desarrolle._
 
-## Troubleshooting
+## Solución de Problemas
 
-_No known issues yet. Add common problems and solutions here as they arise._
+_No hay problemas conocidos aún. Agregar problemas comunes y sus soluciones conforme surjan._
